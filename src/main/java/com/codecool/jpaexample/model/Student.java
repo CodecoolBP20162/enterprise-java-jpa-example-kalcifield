@@ -29,7 +29,8 @@ public class Student {
     private Address address;
 
     @ElementCollection
-    @CollectionTable(name="phone")
+    @CollectionTable(name="phone", joinColumns=@JoinColumn(name="student_id"))
+    @Column(name="phone_number")
     private List<String> phoneNumbers;
 
     public Student() {
@@ -97,6 +98,14 @@ public class Student {
         this.address = address;
     }
 
+    public List<String> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -107,11 +116,5 @@ public class Student {
                 '}';
     }
 
-    public List<String> getPhoneNumbers() {
-        return phoneNumbers;
-    }
 
-    public void setPhoneNumbers(List<String> phoneNumbers) {
-        this.phoneNumbers = phoneNumbers;
-    }
 }

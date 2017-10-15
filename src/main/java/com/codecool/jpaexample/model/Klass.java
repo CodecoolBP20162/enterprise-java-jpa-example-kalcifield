@@ -1,5 +1,7 @@
 package com.codecool.jpaexample.model;
 
+import com.codecool.jpaexample.CCLocation;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +13,9 @@ public class Klass {
     private long id;
 
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private CCLocation location;
 
     @OneToMany
     private Set<Student> students = new HashSet<>();
@@ -43,5 +48,13 @@ public class Klass {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public CCLocation getLocation() {
+        return location;
+    }
+
+    public void setLocation(CCLocation location) {
+        this.location = location;
     }
 }

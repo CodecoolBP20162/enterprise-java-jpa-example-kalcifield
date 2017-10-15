@@ -26,6 +26,7 @@ public class JPAExample {
         }
 
         Klass classBp2 = new Klass("Budapest 2016-2");
+        classBp2.setLocation(CCLocation.BUDAPEST);
         Address address = new Address("Hungary", "1234", "Budapest", "Macskakő út 5.");
         Student student = new Student("Ödön", "odon@tokodon.hu", birthDate1, address);
         classBp2.addStudent(student);
@@ -50,6 +51,11 @@ public class JPAExample {
         Student student4 = new Student("sadár", "ktyfsdfl@gmail.com", birthDate2, address3,s );
         classBp2.addStudent(student4);
         makeTransaction(em, address3, student4);
+
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(classBp2);
+        transaction.commit();
     }
 
     static void makeTransaction(EntityManager em, Address address, Student student) {
